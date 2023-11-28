@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Canvas.module.css';
 
 interface CanvasProps {
-    width: number | undefined;
-    height: number | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
 }
 
 type Coordinate = {
@@ -90,7 +90,7 @@ const Canvas = ({ width = undefined, height = undefined }: CanvasProps) => {
         };
     }, [paint]);
 
-    const exitPaint = useCallback(() => {
+    const exitPaint = useCallback((event: MouseEvent) => {
         setIsPainting(false);
         setMousePosition(undefined);
     }, []);
