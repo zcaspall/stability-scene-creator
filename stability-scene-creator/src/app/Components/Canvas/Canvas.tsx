@@ -5,6 +5,7 @@ import styles from './Canvas.module.css';
 interface CanvasProps {
     width?: number | undefined;
     height?: number | undefined;
+    handleCanvas: (canvas: HTMLCanvasElement) => void;
 }
 
 type Coordinate = {
@@ -37,7 +38,7 @@ const useWindowSize = (): windowSize => {
     return size;
 }
 
-const Canvas = ({ width = undefined, height = undefined }: CanvasProps) => {
+const Canvas = ({ width = undefined, height = undefined, handleCanvas }: CanvasProps) => {
     const windowSize = useWindowSize();
     if (width === undefined && height === undefined) {
         width = windowSize.width;
@@ -93,6 +94,9 @@ const Canvas = ({ width = undefined, height = undefined }: CanvasProps) => {
     const exitPaint = useCallback((event: MouseEvent) => {
         setIsPainting(false);
         setMousePosition(undefined);
+        if (canvasRef.current) {
+            handleCanvas(canvasRef.current);
+        }
     }, []);
 
     useEffect(() => {

@@ -1,23 +1,40 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextPrompt from '../TextPrompt/TextPrompt';
 import Canvas from '../Canvas/Canvas';
-
-interface formProps {
-    
-}
+import ModelSelector from '../ModelSelector/ModelSelector';
+import StyleSelector from '../StyleSelector/StyleSelector';
 
 const SidebarForm = () => {
-    const [formData, setFormData] = useState<any>(null);
+    const [img, setImg] = useState<Blob | null>();
+    const [height, setHeight] = useState<number>();
+    const [width, setWidth] = useState<number>();
+    const [path, setPath] = useState<string>();
+    const [style, setStyle] = useState<string | undefined>(undefined);
 
-    const handleFormData = (formData: any) => {
+    const onModelSelect = (modelPath: string, imgHeight: number, imgWidth: number) => {
+        setPath(modelPath);
+        setHeight(imgHeight);
+        setWidth(imgWidth);
+    }
+    
+    const onStyleSelect = (artStyle: string) => {
+        setStyle(artStyle);
+    }
 
-    };
+    const getCanvas = (canvas: HTMLCanvasElement) => {
+        let imgBlob: Blob | null;
+        canvas.toBlob((blob) => {
+            setImg(blob);
+        });
+    }
 
     return (
         <form> 
-            <TextPrompt label="Prompt" id="prompt" name="prompt">TEXT</TextPrompt>
-            <Canvas />
+            <TextPrompt label="Prompt" id="prompt" name="prompt"></TextPrompt>
+            <ModelSelector selectModel={onModelSelect} />
+            <StyleSelector selectStyle={onStyleSelect} />
+            <Canvas handleCanvas={getCanvas}/>
         </form>
     );
 };

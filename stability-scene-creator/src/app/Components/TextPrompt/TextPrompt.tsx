@@ -4,14 +4,13 @@ interface promptProps {
     label: string;
     id: string;
     name: string;
-    children: React.ReactNode
 }
 
-const TextPrompt = ({ label, id, name, children }: promptProps) => {
+const TextPrompt = ({ label, id, name }: promptProps) => {
     return (
         <>
             <label>{label}</label>
-            <textarea id={id} name={name} >{children}</textarea>
+            <textarea id={id} name={name} ></textarea>
         </>
     );
 }
