@@ -61,7 +61,7 @@ const SidebarForm = () => {
         let imgBlob: Blob | null;
         canvas.toBlob((blob) => {
             setImg(blob);
-        });
+        }, "image/jpg");
     };
 
     const getStrength = (strength: string) => {
@@ -92,7 +92,7 @@ const SidebarForm = () => {
             <TextPrompt label="Prompt" id="prompt" name="prompt" handlePrompt={handlePrompt} />
             <ModelSelector selectModel={onModelSelect} />
             {/* <StyleSelector selectStyle={onStyleSelect} /> */}
-            {genImg ? (<Image src={`data:image/png;base64,${genImg}`} alt="generated image." height={height} width={width} />) 
+            {genImg ? (<Image src={`data:image/jpg;base64,${genImg}`} alt="generated image." height={height} width={width} />) 
             : (<Canvas handleCanvas={getCanvas} height={height} width={width}/>)}
             {/* <StrengthSlider getStrength={getStrength}/> */}
             <button>Generate</button>
