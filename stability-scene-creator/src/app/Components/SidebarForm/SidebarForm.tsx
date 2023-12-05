@@ -1,6 +1,7 @@
 "use client";
 import React, { FormEvent, MouseEventHandler, useEffect, useState } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
 import TextPrompt from '../TextPrompt/TextPrompt';
 import Canvas from '../Canvas/Canvas';
 import ModelSelector from '../ModelSelector/ModelSelector';
@@ -93,7 +94,7 @@ const SidebarForm = () => {
             <TextPrompt label="Prompt" id="prompt" name="prompt" handlePrompt={handlePrompt} />
             <ModelSelector selectModel={onModelSelect} />
             {/* <StyleSelector selectStyle={onStyleSelect} /> */}
-            {genImg ? (<img src={`data:image/png;base64,${genImg}`} />) 
+            {genImg ? (<Image src={`data:image/png;base64,${genImg}`} alt="generated image." />) 
             : (<Canvas handleCanvas={getCanvas} height={height} width={width}/>)}
             {/* <StrengthSlider getStrength={getStrength}/> */}
             <button>Generate</button>
