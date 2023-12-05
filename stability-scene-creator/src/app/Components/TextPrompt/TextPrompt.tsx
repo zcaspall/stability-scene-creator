@@ -7,7 +7,7 @@ interface promptProps {
     handlePrompt: (prompt: textPrompt) => void;
 }
 
-interface textPrompt {
+export interface textPrompt {
     text: string,
     weight: number,
 }

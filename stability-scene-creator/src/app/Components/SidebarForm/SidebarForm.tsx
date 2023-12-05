@@ -1,56 +1,26 @@
 "use client";
-import React, { FormEvent, MouseEventHandler, useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { FormEvent, useState } from 'react';
 import Image from 'next/image';
-import TextPrompt from '../TextPrompt/TextPrompt';
+import TextPrompt, { textPrompt }from '../TextPrompt/TextPrompt';
 import Canvas from '../Canvas/Canvas';
-import ModelSelector from '../ModelSelector/ModelSelector';
 import StyleSelector from '../StyleSelector/StyleSelector';
 import StrengthSlider from '../StrengthSlider/StrengthSlider';
-// import GenerateImage from '../../api/ITI'
-import { generateImage } from '../../actions';
+import { generateImage, GenerationResponse } from '../../actions';
 
-interface GenerationResponse {
-    artifacts: Array<{
-      base64: string
-      seed: number
-      finishReason: string
-    }>
-}
-
-interface textPrompt {
-    text: string,
-    weight: number,
-}
-
-interface generationData {
-    data: {
-      model: string,
-      textPrompts: Array<textPrompt>,
-      img: Blob,
-    }
-  }
 
 const SidebarForm = () => {
     const [textPrompts, setTextPrompts] = useState<textPrompt[]>();
     const [img, setImg] = useState<Blob | null>();
     const [imgStrength, setImgStrength] = useState<number>();
-    const [height, setHeight] = useState<number>(1024);
-    const [width, setWidth] = useState<number>(1024);
-    const [model, setModel] = useState<string>();
     const [style, setStyle] = useState<string | undefined>(undefined);
     const [genImg, setGenImg] = useState<string>();
     const formData = new FormData();
-    let responseJson: GenerationResponse | undefined = undefined;
+    const model: string = "stable-diffusion-xl-1024-v1-0"
+    const height: number = 1024;
+    const width: number = 1024; 
 
     const handlePrompt = (prompt: textPrompt) => {
         setTextPrompts([prompt]);
-    };
-
-    const onModelSelect = (model: string, imgHeight: number, imgWidth: number) => {
-        setModel(model);
-        setHeight(imgHeight);
-        setWidth(imgWidth);
     };
     
     const onStyleSelect = (artStyle: string) => {
@@ -83,6 +53,7 @@ const SidebarForm = () => {
         if (img) {
             formData.append('init_image', img);
         }
+        console.log(img);
         let response = await generateImage(formData) as GenerationResponse;
         let genImgBin = response.artifacts[0].base64;
         setGenImg(genImgBin);
@@ -90,7 +61,6 @@ const SidebarForm = () => {
     return (
         <form onSubmit={generate}>
             <TextPrompt label="Prompt" id="prompt" name="prompt" handlePrompt={handlePrompt} />
-            <ModelSelector selectModel={onModelSelect} />
             {/* <StyleSelector selectStyle={onStyleSelect} /> */}
             {genImg ? (<Image src={`data:image/jpeg;base64,${genImg}`} alt="generated image." height={height} width={width} />) 
             : (<Canvas handleCanvas={getCanvas} height={height} width={width}/>)}

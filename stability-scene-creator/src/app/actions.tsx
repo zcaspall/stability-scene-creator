@@ -9,7 +9,7 @@ if (!API_KEY) {
     throw new Error('Stability key required');
 }
 
-interface GenerationResponse {
+export interface GenerationResponse {
     artifacts: Array<{
       base64: string
       seed: number
