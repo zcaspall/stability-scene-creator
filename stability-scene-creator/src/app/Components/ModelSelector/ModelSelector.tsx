@@ -9,21 +9,20 @@ const ModelSelector = ({ selectModel }: ModelSelectorProps) => {
     const xlModel = "stable-diffusion-xl-1024-v1-0";
     const v1Model = "stable-diffusion-v1-6";
     const [model, setModel] = useState("stable-diffusion-xl-1024-v1-0");
+    let height = 1024;
+    let width = 1024;
 
     const handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setModel(event.target.value);
     }
 
     useEffect(() => {
-        let path =   `https://api.stability.ai/v1/generation/${model}/image-to-image`;
-        let height = 1024;
-        let width = 1024;
         if (model === v1Model) {
             height = 512;
             width = 512;
         }
-        selectModel(path, height, width);
-    })
+        selectModel(model, height, width);
+    }, [model])
 
     return(
         <>

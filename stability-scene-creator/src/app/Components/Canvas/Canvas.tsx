@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Canvas.module.css';
 
 interface CanvasProps {
-    width?: number | undefined;
-    height?: number | undefined;
+    width: number;
+    height: number;
     handleCanvas: (canvas: HTMLCanvasElement) => void;
 }
 
@@ -13,37 +13,7 @@ type Coordinate = {
     y: number;
 };
 
-type windowSize = {
-    width: number | undefined;
-    height: number | undefined;
-};
-
-const useWindowSize = (): windowSize => {
-    const [size, setSize] = useState<windowSize>({
-        width: undefined,
-        height: undefined,
-    });
-    useEffect(() => {
-        function handleResize(): void {
-            setSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        }
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return (): void => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    return size;
-}
-
-const Canvas = ({ width = undefined, height = undefined, handleCanvas }: CanvasProps) => {
-    const windowSize = useWindowSize();
-    if (width === undefined && height === undefined) {
-        width = windowSize.width;
-        height = windowSize.height;
-    }
+const Canvas = ({ width, height, handleCanvas }: CanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isPainting, setIsPainting] = useState(false);
     const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(undefined);

@@ -1,35 +1,29 @@
+"use server";
+require('dotenv')
 import fetch from 'node-fetch'
-import { FormData }from 'formdata-node'
+import FormData from 'form-data'
 import fs from 'node:fs'
+import exp from 'node:constants'
 
-
-//This may need to be changed so it can use proper selected engine
-const engineId = 'stable-diffusion-xl-1024-v1-0'
-const apiHost = process.env.API_HOST ?? 'https://api.stability.ai'
-
-//Get our API Key
-const apiKey = process.env.STABILITY_API_KEY
+const apiHost = process.env.API_HOST
+const apiKey = process.env.API_KEY
+const formData = new FormData();
 
 if(!apiKey){
-    throw new Error('Stability key requiered')
+    throw new Error('Stability key required')
 }
 
-//appends information to send to Stability
-const formData = new FormData()
-formData.append('init_image', /* place holder */)
-//formData.append('init_image_mode', 'IMAGE_STRENGTH')
-//formData.append('image_strength', )
-formData.append('text_prompts[0][text]', 'Black Sheep with purple horns')
+interface generationData {
+    model: string,
+    textPrompts: Array<{
+      text: string,
+      weight: number,
+    }>,
+    img: Blob,
+}
 
-const response = await fetch(
-    `${apiHost}/v1/generation/${engineId}/image-to-image`,
-    {
-      method: 'POST',
-      headers: {
-        ...formData.getHeaders(),
-        Accept: 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: formData,
-    }
-  )
+const GenerateImage = (formData: generationData) => {
+    console.log(formData);
+};
+
+export default GenerateImage;
