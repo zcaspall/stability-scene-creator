@@ -66,7 +66,6 @@ const SidebarForm = () => {
 
     const getStrength = (strength: string) => {
         let canvStrength = Number(strength);
-        console.log(canvStrength);
         setImgStrength(canvStrength);
     };
     
@@ -86,7 +85,6 @@ const SidebarForm = () => {
         }
         let response = await generateImage(formData) as GenerationResponse;
         let genImgBin = response.artifacts[0].base64;
-        // console.log(genImgBlob);
         setGenImg(genImgBin);
     };
     return (

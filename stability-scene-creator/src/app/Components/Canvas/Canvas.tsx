@@ -67,7 +67,7 @@ const Canvas = ({ width, height, handleCanvas }: CanvasProps) => {
         if (canvasRef.current) {
             handleCanvas(canvasRef.current);
         }
-    }, []);
+    }, [handleCanvas]);
 
     useEffect(() => {
         if (!canvasRef.current) {
