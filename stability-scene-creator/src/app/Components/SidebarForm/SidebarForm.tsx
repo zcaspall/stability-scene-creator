@@ -69,7 +69,7 @@ const SidebarForm = () => {
         console.log(canvStrength);
         setImgStrength(canvStrength);
     };
-
+    
     const generate = async (e: FormEvent) => {
         e.preventDefault();
         if (model) {
@@ -94,7 +94,7 @@ const SidebarForm = () => {
             <TextPrompt label="Prompt" id="prompt" name="prompt" handlePrompt={handlePrompt} />
             <ModelSelector selectModel={onModelSelect} />
             {/* <StyleSelector selectStyle={onStyleSelect} /> */}
-            {genImg ? (<Image src={`data:image/png;base64,${genImg}`} alt="generated image." />) 
+            {genImg ? (<Image src={`data:image/png;base64,${genImg}`} alt="generated image." height={height} width={width} />) 
             : (<Canvas handleCanvas={getCanvas} height={height} width={width}/>)}
             {/* <StrengthSlider getStrength={getStrength}/> */}
             <button>Generate</button>
