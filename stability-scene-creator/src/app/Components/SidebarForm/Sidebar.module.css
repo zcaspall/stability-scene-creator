@@ -1,0 +1,14 @@
+.form {
+    display: flex;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.image {
+    border: white;
+    background-color: white;
+}

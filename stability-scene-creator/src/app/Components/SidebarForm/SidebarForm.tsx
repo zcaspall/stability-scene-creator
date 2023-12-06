@@ -1,4 +1,5 @@
 "use client";
+import styles from './Sidebar.module.css';
 import React, { FormEvent, useState } from 'react';
 import Image from 'next/image';
 import TextPrompt, { textPrompt }from '../TextPrompt/TextPrompt';
@@ -28,7 +29,6 @@ const SidebarForm = () => {
     };
 
     const getCanvas = (canvas: HTMLCanvasElement) => {
-        let imgBlob: Blob | null;
         canvas.toBlob((blob) => {
             setImg(blob);
         }, "image/jpeg");
@@ -41,9 +41,7 @@ const SidebarForm = () => {
     
     const generate = async (e: FormEvent) => {
         e.preventDefault();
-        if (model) {
-            formData.append('engine_id', model);
-        }
+        formData.append('engine_id', model);
         if (textPrompts) {
             textPrompts.forEach((prompt, index) => {
                 formData.append(`text_prompts[${index}][text]`, prompt.text);
@@ -53,19 +51,25 @@ const SidebarForm = () => {
         if (img) {
             formData.append('init_image', img);
         }
-        console.log(img);
+        if (imgStrength) {
+            formData.append('image_strength', imgStrength.toString());
+        }
+        formData.append('cfg_scale', "30")
         let response = await generateImage(formData) as GenerationResponse;
         let genImgBin = response.artifacts[0].base64;
         setGenImg(genImgBin);
     };
     return (
-        <form onSubmit={generate}>
-            <TextPrompt label="Prompt" id="prompt" name="prompt" handlePrompt={handlePrompt} />
-            {/* <StyleSelector selectStyle={onStyleSelect} /> */}
-            {genImg ? (<Image src={`data:image/jpeg;base64,${genImg}`} alt="generated image." height={height} width={width} />) 
-            : (<Canvas handleCanvas={getCanvas} height={height} width={width}/>)}
-            {/* <StrengthSlider getStrength={getStrength}/> */}
-            <button>Generate</button>
+        <form onSubmit={generate} className={styles.form}>
+            <div className={styles.sidebar}>
+                <TextPrompt label="Prompt:" id="prompt" name="prompt" handlePrompt={handlePrompt} />
+                <StrengthSlider getStrength={getStrength}/>
+                <button>Generate</button>
+            </div>
+            <div id='canvas-container'>
+                {genImg ? (<Image src={`data:image/jpeg;base64,${genImg}`} alt="generated image." height={height} width={width} className={styles.image} />) 
+                : (<Canvas handleCanvas={getCanvas} height={height} width={width}/>)}
+            </div>
         </form>
     );
 };

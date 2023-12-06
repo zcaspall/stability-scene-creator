@@ -17,6 +17,18 @@ const Canvas = ({ width, height, handleCanvas }: CanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isPainting, setIsPainting] = useState(false);
     const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(undefined);
+
+    useEffect( () => {
+        if (!canvasRef.current) {
+            return;
+        }
+        let canvas = canvasRef.current;
+        let context = canvas.getContext('2d');
+        if (context) {
+            context.fillStyle = "#FFFFFF";
+            context.fillRect(0, 0, width, height);
+        }
+    }, []);
     
     const startPaint = useCallback((event: MouseEvent) => {
         const coordinates = getCoordinates(event);
@@ -98,7 +110,7 @@ const Canvas = ({ width, height, handleCanvas }: CanvasProps) => {
         const canvas: HTMLCanvasElement = canvasRef.current;
         const context = canvas.getContext('2d');
         if (context) {
-            context.strokeStyle = 'red';
+            context.strokeStyle = 'black';
             context.lineJoin = 'round';
             context.lineWidth = 5;
 
@@ -111,7 +123,7 @@ const Canvas = ({ width, height, handleCanvas }: CanvasProps) => {
         }
     };
 
-    return <canvas ref={canvasRef} width={width} height={height} />;
+    return <canvas ref={canvasRef} width={width} height={height} className={styles.canvas}/>;
 };
 
 export default Canvas;
