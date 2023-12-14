@@ -1,4 +1,5 @@
-# stability-scene-creator Time Line
+# stability-scene-creator 
+## Timeline
 ``` SQL
 -- Make a front-end webpage for input [DONE]
 -- Write code that takes user input and sends information to stability [DONE]
