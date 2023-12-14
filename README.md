@@ -10,13 +10,13 @@
 
 ![image](https://github.com/zcaspall/stability-scene-creator/assets/98758553/1f4f84be-cf74-4020-b396-77a58b60bdca)
 
-##### Init_Image
+>> ##### init_image
 Instead of using noise to start the diffusion process, the init_image is used.
 
-##### Image Strength
+>> ##### image_strength
 The value determines how much the init_image influences the generated image. If the value is closer to 1 it will generate images similar to to the init_image. If the value is closer to zero generated images will be much different from the init_image.
 
-##### cfg_scale
+>> ##### cfg_scale
 Determines how closely the generation process follows the prompt given.
 
 # References:
