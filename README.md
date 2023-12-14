@@ -6,7 +6,7 @@
 ```
 
 
-#Generation Variables <br>
+## Generation Variables <br>
 
 ![image](https://github.com/zcaspall/stability-scene-creator/assets/98758553/1f4f84be-cf74-4020-b396-77a58b60bdca)
 
