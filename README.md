@@ -5,20 +5,6 @@
 -- Write code that takes user input and sends information to stability [DONE]
 -- Receive and display the image from Stability [DONE]
 ```
-
-## Generation Variables <br>
-
-![image](https://github.com/zcaspall/stability-scene-creator/assets/98758553/1f4f84be-cf74-4020-b396-77a58b60bdca)
-
-> ##### init_image
-Instead of using noise to start the diffusion process, the init_image is used.
-
-> ##### image_strength
-image_strength goes from 0 to 1. The value determines how much the init_image influences the generated image. If the value is closer to one, Stability will generate images similar to the init_image. If the value is closer to zero generated images will be much different from the init_image.
-
-> ##### cfg_scale
-Accepted cfg_values range from 0 to 35. The cfg_scale determines how closely the generation process follows the prompt given.
-
 # References:
 - Croitoru, F.-A., Hondru, V., Ionescu, R. T., & Shah, M. (2023). Diffusion models in vision: A survey. IEEE Transactions on Pattern Analysis and Machine Intelligence, 45(9), 10850–10869. https://doi.org/10.1109/tpami.2023.3261988 
 - Stability Ai - Developer Platform. (n.d.). https://platform.stability.ai/docs/getting-started 
@@ -46,3 +32,13 @@ The goal of this project was to create a prototype for a web application that wo
 - **React**: For the frontend we picked the javascript library React. This decision was mostly based on preference for a frontend library, but React's state handling through hooks made it much simpler to implement the virtual canvas over vanilla javascript. This fact made it a vital part of the implementation.
 - **TypeScript**: For the backend we decided to go with TypeScript. We decided to go the TypeScript because we were dealing with such strict datatypes, specifically the image binary file produced by the virtual canvas. This got rid of many headaches that come with working with data in an untyped language.
 - **NextJs**: We decided to use the NextJs framework to make tooling easier and to allow for a more seamless communication between the frontend and the backend.
+![image](https://github.com/zcaspall/stability-scene-creator/assets/55821382/d20c409a-f055-4673-9d2e-8597a9738e61)
+![image](https://github.com/zcaspall/stability-scene-creator/assets/55821382/b62f4cd0-cab4-45c1-9a96-dccebc612a6d)
+This is a sample test run we did of the application with the prompt "old man tending to the bar in a medieval tavern". Notice how even though the drawing was crude the model was able to create a pretty good picture from it, also that it didn't completely disregard the position of the items in the drawing. While this isn't a perfect picture it is close to our goal of allowing a scene to be created through crude drawings. This can be improved by fine tuning the image weights and cfg_scale of the model to get closer to our goal, but as of right now this was as good as we were able to get it.
+### Generation Variables
+![image](https://github.com/zcaspall/stability-scene-creator/assets/98758553/1f4f84be-cf74-4020-b396-77a58b60bdca)
+> ##### image_strength
+image_strength goes from 0 to 1. The value determines how much the init_image influences the generated image. If the value is closer to one, Stability will generate images similar to the init_image. If the value is closer to zero generated images will be much different from the init_image.
+
+> ##### cfg_scale
+Accepted cfg_values range from 0 to 35. The cfg_scale determines how closely the generation process follows the prompt given.
