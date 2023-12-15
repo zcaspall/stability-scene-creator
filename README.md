@@ -5,13 +5,15 @@
 -- Write code that takes user input and sends information to stability [DONE]
 -- Receive and display the image from Stability [DONE]
 ```
-# References:
+## References:
 - Croitoru, F.-A., Hondru, V., Ionescu, R. T., & Shah, M. (2023). Diffusion models in vision: A survey. IEEE Transactions on Pattern Analysis and Machine Intelligence, 45(9), 10850–10869. https://doi.org/10.1109/tpami.2023.3261988 
 - Stability Ai - Developer Platform. (n.d.). https://platform.stability.ai/docs/getting-started 
 - eV, L. (n.d.). Laion/Laion-high-resolution · datasets at hugging face. laion/laion-high-resolution · Datasets at Hugging Face. https://huggingface.co/datasets/laion/laion-high-resolution
-- Purohit. Exploring the versatility of react canvas draw. A Comprehensive Guide to React Canvas Draw: All You Need to Know. (n.d.). https://www.dhiwise.com/post/designing-stunning-artwork-with-react-canvas-draw 
+- Purohit. Exploring the versatility of react canvas draw. A Comprehensive Guide to React Canvas Draw: All You Need to Know. (n.d.). https://www.dhiwise.com/post/designing-stunning-artwork-with-react-canvas-draw
+- Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., Askell, A., Mishkin, P., Clark, J., Krueger, G., &amp; Sutskever, I. (2021, February 26). Learning transferable visual models from Natural Language Supervision. arXiv.org. https://arxiv.org/abs/2103.00020 
 <br>
-
+## Overview
+AI art is often ridiculed as a replacement for art and that is in part because of how it has been used since it's discovery. AI art has been used as a quick way to make beautiful art, the problem is this is solving a problem that doesn't exist. We already have artists and we have artists that can make art that looks better than the generated art from AI models. For this project we wanted to explore the application of generative art in applications that extend human creativity rather than replace it. Our goal was to create a web application that could take a quick drawing and turn it into a detailed scene. The stable diffusion model allows for image-to-image synthesis as well as multi-prompt image generation, so we decided to use that model for this project. Stability AI also provides a great REST api for their stable diffusion model, making it an easier development experience to get a prototype of this application up and running.
 ## Stable Diffusion
 Stable diffusion is an open source latent diffusion model developed by Stability AI. The model gets it name from the concept of using text encoding to "stabilize" latent diffusion models, allowing the user to guide the model with prompts and even images. A big part of what makes the stable diffusion model unique to other generative models is actually the dataset that it was trained on. Stable diffusion was trained on the LAION5B dataset, an open source dataset created by the nonprofit organization LAION. This dataset consists of 5 billion image-text pairs scraped from across the internet. This dataset is what allows stable diffusion to guide it's latent diffusion model towards a wide range of images and subjects.
 
@@ -56,3 +58,5 @@ This is the function that passes the frontend data into the backend.
 Right now the backend consists of just a call to the api, but in the future we hope to be able to store the seeds of the generated images. This way the generated images can be used in other scenes allowing the user to have reocurring characters within scenes or add characters to already existing scenes.
 ![image](https://github.com/zcaspall/stability-scene-creator/assets/55821382/b46310d9-09b4-47a8-a73e-558d7697dd72)
 This is the call to the api. It sends back an image binary which is then displayed in place of the canvas.
+## Conclusion
+We were successful in creating a functional prototype that demonstrates the power of generative models in situations such as generating scenes on the fly from human input. In the future we hope to take this project further, the first step is to improve upon the human interface whether that be by upgrading the canvas on the application or switching to a different way of getting the human input that is still quick and intuitive. We also want to improve upon the image generation itself, hopefully add some color to the output image. We will look into any kind of performance increase we might get by switching from the REST api to Stability AI's GRPC client. This would give us more control over the model, but also add additional hurdles in terms of the computing going on in the backend which in the end could slow down our application.
