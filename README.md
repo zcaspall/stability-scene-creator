@@ -8,7 +8,8 @@
 # References:
 - Croitoru, F.-A., Hondru, V., Ionescu, R. T., & Shah, M. (2023). Diffusion models in vision: A survey. IEEE Transactions on Pattern Analysis and Machine Intelligence, 45(9), 10850–10869. https://doi.org/10.1109/tpami.2023.3261988 
 - Stability Ai - Developer Platform. (n.d.). https://platform.stability.ai/docs/getting-started 
-- eV, L. (n.d.). Laion/Laion-high-resolution · datasets at hugging face. laion/laion-high-resolution · Datasets at Hugging Face. https://huggingface.co/datasets/laion/laion-high-resolution 
+- eV, L. (n.d.). Laion/Laion-high-resolution · datasets at hugging face. laion/laion-high-resolution · Datasets at Hugging Face. https://huggingface.co/datasets/laion/laion-high-resolution
+- Purohit. Exploring the versatility of react canvas draw. A Comprehensive Guide to React Canvas Draw: All You Need to Know. (n.d.). https://www.dhiwise.com/post/designing-stunning-artwork-with-react-canvas-draw 
 <br>
 
 ## Stable Diffusion
@@ -43,4 +44,4 @@ image_strength goes from 0 to 1. The value determines how much the init_image in
 > ##### cfg_scale
 Accepted cfg_values range from 0 to 35. The cfg_scale determines how closely the generation process follows the prompt given.
 ### Virtual Canvas
-The virtual canvas was the biggest part of 
+The virtual canvas was the biggest part of the application. We needed to build a canvas that could download it's contents into a jpeg image binary so that it could then be fed into Stability AI's REST api.
