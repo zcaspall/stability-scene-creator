@@ -42,3 +42,5 @@ image_strength goes from 0 to 1. The value determines how much the init_image in
 
 > ##### cfg_scale
 Accepted cfg_values range from 0 to 35. The cfg_scale determines how closely the generation process follows the prompt given.
+### Virtual Canvas
+The virtual canvas was the biggest part of 
